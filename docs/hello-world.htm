@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="template-info" file-name="empty.htm" version="2022-02-09" editor="USP" />
+<meta name="author" content="USP" />
+<meta name="creation-date" content="2022-09-14" />
+<meta name="editor" content="USP" />
+<meta name="change-date" content="2022-09-14" />
+<meta name="version" content="1" />
+<meta name="categories" content="Programming > Language > TypeScript" />
+<meta name="tags" content="TypeScript, tutorial, hello world" />
+<meta name="description" content="If the TypeScript compiler is installed, we can go for a test drive." />
+
+<link rel="stylesheet" href="/inc/page.css" />
+ 
+<title>Hello World!</title>
+
+</head><body><header id="page-header"></header><div id="main-toolbar"></div><main id="page-content">
+
+<h1>Hello World!</h1>
+
+<p id="page-abstract"></p>
+
+<p class="note">A note ahead: If you have "international" or "non-standard" characters in your source files, make sure to save with "UTF-8 with encoding". Otherwise the compiler will complain about a mysterious "Error in data".</p>
+
+<p>Start your favorite text editor and create the following file:</p>
+
+<pre>console.log( "Hello World!" );</pre>
+
+<p>Save it under the name "ex-01.ts". Then start a console window and execute the following commands:</p>
+
+<pre>> tsc ex-01.ts
+> ls ex-01.*
+<cc>ex-01.js  ex-01.ts</cc>
+> cat ex-01.js
+<cc>console.log( "Hello World!" );</cc>
+> cat ex-01.ts
+<cc>console.log( "Hello World!" );</cc>
+</pre>
+
+<p>The compilation terminates silently if there is no error. The directory listing shows that the compiler generated the file <tt>ex-01.js</tt>. Finally, both files were printed out, and it is not hard to see that they are identical: JavaScript is valid TypeScript!</p>
+
+<p>To execute the script, we need a scripting engine host. For example, Node:</p>
+
+<pre>
+> node ex-01.js
+<cc>Hello World!</cc>
+</pre>
+
+<p>Or Deno:</p>
+
+<pre>
+> Deno run ex-01.js
+<cc>Hello World!</cc>
+</pre>
+
+<p>Deno can also run TypeScript directly:</p>
+
+<pre>
+> Deno run ex-01.ts
+<cc>Check file:///D:/.../examples/ex-01.ts</cc>
+<cc>Hello World!</cc>
+</pre>
+
+<p>Another alternative is to create a small HTML wrapper file and run the script in the browser scripting engine:</p>
+
+<pre>
+&lt;html&gt;&lt;body&gt;
+&lt;h1&gt;ex-01&lt;/h1&gt;
+&lt;script&gt;
+debugger;
+&lt;/script&gt;
+&lt;script src="ex-01.js"&gt;&lt;/script&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre>
+
+<p>Security standards require the browser no refuse loading of script files over the file:// protocol, so we need a web server. The Deno Standard Library contains a file server script that can be used for this purpose. Install it with the following command:</p>
+
+<pre>
+> deno install --allow-net --allow-read
+    https://deno.land/std@0.155.0/http/file_server.ts
+<cc>Download https://deno.land/std@0.155.0/http/file_server.ts
+  ...
+Download https://deno.land/std@0.155.0/path/_util.ts
+Check https://deno.land/std@0.155.0/http/file_server.ts
+Successfully installed file_server
+C:\Users\bm\.deno\bin\file_server.cmd
+C:\Users\bm\.deno\bin\file_server (shell)
+Add C:\Users\ulric\.deno\bin to PATH</cc>
+> set PATH=%PATH%;C:\Users\bm\.deno\bin
+</pre>
+
+<p>Then change to the examples folder and start the file server:</p>
+
+<pre>
+> cd .\examples
+> file_server
+<cc>HTTP server listening on http://localhost:4507/</cc>
+</pre>
+
+<p>Then navigate your browser to <a href="http://localhost:4507/ex-01.htm">http://localhost:4507/ex-01.htm</a>, open the browser development tools (F11) and reload the page. The <tt>debugger</tt> statement in the html file pauses execution before the <tt>ex-01.js</tt> file is loaded. Now you can conveniently inspect and single-step through your script(s).</p>
+
+</main><footer id="page-footer"></footer><script type="module" src="/inc/page.js" ></script></body></html>

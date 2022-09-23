@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="template-info" file-name="empty.htm" version="2022-02-09" editor="USP" />
+<meta name="author" content="USP" />
+<meta name="creation-date" content="2022-09-14" />
+<meta name="editor" content="USP" />
+<meta name="change-date" content="2022-09-14" />
+<meta name="version" content="1" />
+<meta name="categories" content="Programming > Language > TypeScript" />
+<meta name="tags" content="TypeScript, tutorial, installation" />
+<meta name="description" content="This page describes some TypeScript installation options." />
+
+<link rel="stylesheet" href="/inc/page.css" />
+ 
+<title>TypeScript Installation</title>
+
+</head><body><header id="page-header"></header><div id="main-toolbar"></div><main id="page-content">
+
+<h1>TypeScript Installation</h1>
+
+<p id="page-abstract"></p>
+
+<h2 cbc>Node.js and NPM</h2><div>
+
+<p>The TypeScript compiler <tt>tsc</tt> needs <tt>node.js</tt> as execution host, so</p>
+
+<ol class="instructions">
+<li>Make sure that <a href="">node.js</a> is installed.</li>
+</ol>
+
+<p>TypeScript can be installed either globally on the machine, or on a project-by-project basis to ensure that development uses a specific TypeScript version. To install TypeScript globally,&hellip;</p>
+
+<ol class="instructions continue">
+<li>Open a command line window (e. g. cmd.exe), and run the following command:<pre>npm install -g typescript</pre>This installs the latest version of TypeScript globally on your machine.</li>
+<li>Run TypeScript in a command line window:<pre>tsc --version</pre></li>
+</ol>
+
+<p>To install tsc on a per-project basis,&hellip;</p>
+
+<ol class="instructions continue">
+<li>Open a command window and navigate to the project directory.</li>
+<li>Run the following command: <pre>npm install typescript --save-dev</pre></li>
+<li>Run TypeScript <pre>npx tsc --version</pre></li>
+</ol>
+
+<!--h2--></div>
+
+<h2 cbc>Deno</h2><div>
+
+<p><tt>Deno</tt>, the successor of <tt>Node</tt>, is a JavaScript and TypeScript engine host for multiple operating systems and allows to execute JavaScript and TypeScript files out of the box:</p>
+
+<pre>deno run script.ts</pre>
+
+<p>TypeScript files are checked before run, so you don't need to install the TypeScript compiler separately. Unfortunately, Deno does not yet (2022-04-19) run on Termux for Android.</p>
+
+<p>Instructions to install deno on your platform can be found in the <a href="deno.land">deno.land</a>. It is as simple as downloading and running the installer.</p>
+
+<!--h2--></div>
+
+<h2 cbc>Visual Studio</h2><div>
+
+<p>TypeScript can be used in VisualStudio MSBuild projects:</p>
+
+<ol class="instructions">
+<li>Click the menu <tt>Tools >	NuGet Package Manager > Package Manager Console</tt>.</li>
+<li>Run the following command in the PM console window:<pre>Install-Package Microsoft.TypeScript.MSBuild</pre></li>
+</ol>
+
+<p>If you get the error message</p>
+<pre>FullyQualifiedErrorId : NuGetProjectNotFound</pre>
+<p>your project type does not support NuGet.</p>
+
+<p>Alternatively, you can istall TypeScript via VisualStudio Marketplace:</p>
+
+<ol class="instructions continue">
+<li>Click the menu <tt>Extensions > Manage Extensions</tt>.</li>
+<li>Enter "typescript" into the search box.</li>
+<li>Select the TypeScript compiler extension and follown the installation procedure.</li>
+</ol>
+
+<!---h2--></div>
+
+<h2 cbc>Visual Studio Code</h2><div>
+
+<p>This popular IDE has also has a TypeScript plug-in that can be installed from the VS Code Marketplace.</p>
+
+<!--h2--></div>
+
+<h2 cbc>Android</h2><div>
+
+<p>TypeScript runs on Android! Although, there are a few steps to be made to get it set up properly:</p>
+
+<ol class="instructions">
+<li>Install <a href="https://f-droid.org/en/">F-Droid</a>, an alternative package repository. This is required because Termux in Google Play Store does no longer receive updates.</li>
+<li>Open F-Droid, search for and install <a href="https://f-droid.org/en/packages/com.termux/">Termux</a>, a terminal emulator and host for a Linux distribution.</li>
+<li>Run termux and install your favorite Linux distribution.</li>
+<li>Make sure to have the lates updates by running <tt>pkg update</tt>.</li>
+<li>Run <tt>termux-setup-storage</tt> to get access to storage on your device. This creates the folders dcim, external-1, music, shared, downloads, movies and pictures in the ~/storage folder. The contents of your internal device storage appears in ~/storage/shared, the folder Android/com.termux/files on your SD card appears in ~/storage/external-1. Without rooting, other folders on the SD card are not accessible from termux.</li>
+<li>Then follow the instructions for <a href="#linux">Linux</a>.</li>
+</ol>
+
+<!--h2--></div>
+
+<h2 cbc>Termux Alternatives on Android</h2><div>
+
+<p><a href="https://alm-tools.gitbooks.io/alm/content/"><tt>ALM tools</tt></a> is an IDE for TypeScript</p>
+
+<!--h2--></div>
+
+<h2 id="linux" cbc>Linux</h2><div>
+
+<p>Depending on your distribution, the package manager commands may vary slightly. In my installation it is <tt>pkg</tt>.</p>
+
+<ol class="instructions">
+<li>Install Node.js with <tt>pkg install nodejs</tt>.</li>
+<li>Run <tt>node --version</tt> to verify that Node runs correctly.</li>
+<li>Install Typescript with <tt>npm install -g typescript</tt>.</li>
+<li>Run <tt>tsc --version</tt> to verify that the TypeScript compiler runs correctly.</li>
+<li>Create an empty file with <tt>touch hello.ts</tt>.</li>
+<li>Run <tt>nano hello.ts</tt> to open a text editor and type the instruction <tt>console.log( "Hello world!" );</tt>, then save and close the file.</li>
+<li>Run <tt>tsc hello.ts</tt> to compile the source file.</li>
+<li>Run <tt>cat hello.js</tt> to inspect the generated JavaScript file.</li>
+<li>Run <tt>node hello.js</tt> to execute the test file.</li>
+</ol>
+
+<p>If you are welcomed with the famous "Hello world!", your installation succeeded and you are ready to TypeScript on your mobile Android device.</p>
+
+<!--h2--></div>
+
+<h2 cbc>Project Configuration</h2><div>
+
+<p>The TypeScript compiler has configuration options stored in a project config file. To create it, open a console window, then navigate to the project directory and run the following command:</p>
+
+<pre>tsc --init</pre>
+
+<p>This creates a file named <tt>tscconfig.json</tt>. Open it in an editor and browse it. Comments supply the necessary information for editing.</p>
+
+<!--TODO: Explain some common config entries.-->
+
+<!--h2--></div>
+
+
+</main><footer id="page-footer"></footer><script type="module" src="/inc/page.js" ></script></body></html>

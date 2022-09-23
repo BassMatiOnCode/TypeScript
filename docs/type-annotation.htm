@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="template-info" file-name="empty.htm" version="2022-02-09" editor="USP" />
+<meta name="author" content="USP" />
+<meta name="creation-date" content="2022-09-15" />
+<meta name="editor" content="USP" />
+<meta name="change-date" content="2022-09-15" />
+<meta name="version" content="1" />
+<meta name="categories" content="Programming > Language > TypeScript" />
+<meta name="tags" content="TypeScript, tutorial, type annotation" />
+<meta name="description" content="In this installment we will start with adding type annotations to JavaScript code." />
+
+<link rel="stylesheet" href="/inc/page.css" />
+ 
+<title>TypeScript - Type Annotations</title>
+
+</head><body><header id="page-header"></header><div id="main-toolbar"></div><main id="page-content">
+
+<h1>Type Annotations</h1>
+
+<p id="page-abstract"></p>
+
+<h2 cbc>Type Inference</h2><div>
+
+<p>Consider the following JavaScript code:</p>
+
+<figcaption class="listing">ex-02.ts</figcaption>
+<pre>
+var x = 0;
+console.log( x );
+x = "42";
+console.log( x );
+</pre>
+
+<p>Note that x holds a number first, then gets a string assigned. There is nothing wrong with that, but the variable is used <em>inconsistently</em> &ndash; which can lead to confusion at some point in time.</p>
+
+<p>If you open this code in <a href="./examples/ex-02.ts">examples/ex-02.ts</a>, you can already see a squiggly line under x in line 3, and there is an entry in the error list:</p>
+
+<pre><hi>Error  TS2322  (TS) Type 'string' is not assignable to type 'number'.</hi></pre>
+
+<p>TypeScript provides a <em>language service</em> that IDEs can use to check source code, and errors are instantly indicated while editing. Very convenient!</p>
+
+<p>But, what's wrong here wit that statement? Well, TypeScript <em>reads</em> the declaration in line 1 and finds an initialization with a number type, so it assumes x is of type number. In line 3, a string type is assigned to x. Which is an inconsistent use and against TypeScript's rules.</p>
+
+<p>If we compile the script, we get an error:</p>
+
+<pre>
+> tsc ex-02.ts
+<cc>ex-02.ts:3:1 - <hi>error TS2322</hi>: Type 'string' is not assignable to type 'number'.
+3 x = "42";</cc>
+</pre>
+
+<p>Note that the code above has no type annotations. Nevertheless, TypeScript recognizes a type-related problem here:</p>
+
+<p class="note">TypeScript can <em>infer</em> the type of variables in many cases. In fact, it is considered good practice to avoid explicit type annotations when types can be inferred.</p>
+
+<p>Nevertheless, the output file (ex-02.js) has been created. What does that mean?</p>
+
+<p class="note">The TypeScript compiler can be used to migrate existing JavaScript code to TypeScript in a graceful manner. Problems are indicated, but you are not forced to change your code base all at once. You can migrate gradually and remove problems step-by-step, one at a time.</p>
+
+<!--h2--></div>
+
+<h2 cbc>Type Annotations</h2><div>
+
+<p>Now let's address the problem.</p>
+
+<figcaption class="listing">ex-03.ts</figcaption>
+<pre>
+var x<hi>:number</hi>;
+x = 0;
+console.log( x );
+x = 42;
+console.log( x );
+</pre>
+
+<p>In the code above we have <em>explicitly</em> annotated the variable declaration with a type information. X is meant to be a <em>number</em>. Then we can assign numbers (0), but not strings ("42"). To correct that, we removed the quotation marks in line three.</p>
+
+<p>To test the script, open a console window and execute the following command:</p>
+
+<pre>> deno run ex-03.ts<cc>
+Check file:///D:/.../examples/ex-03.ts
+0
+42
+</cc></pre>
+
+<p>Deno checked and found no problems with this file.</p>
+
+<p>To summarize:</p>
+
+<p class="note">Variables can be type-annotated by adding a colon followed a type name:
+<br/><tt>variable-name : type-name</tt></p>
+
+<p>This also works for function parameters, as they are some sort of variables, local to functions:</p>
+
+<pre>
+function add ( a<hi>:number</hi>, b<hi>:number</hi>) { return a + b; }
+</pre>
+
+<p>In fact, TypeScript can not always infer the parameter types, so it is a good idea to add type annotations to parameters.</p>
+
+<p>TypeScript can infer the return type in most cases. However, I recommend to annotate the function parameter and return types explicitly:</p>
+
+<pre>function-name( annotated-parameter-list ) : return-type-name { statements-block }</pre>
+
+<p>This makes it easier for other developers to use your function.</p>
+
+<p>Common type names are the primitives</p>
+
+<ul>
+<li>number</li>
+<li>string</li>
+<li>boolean</li>
+</ul>
+
+<p>Homogenous array types are declared as <tt>type-name</tt>, followed by a pair of angle brackets <tt>[ ]</tt>, as in</p>
+
+<pre>var names : string[] ;</pre>
+
+<p>Note that the array element type can be inferred from an initialization:</p>
+
+<pre>var names = [ "Smith", "Brown", "Miller" ];
+names[ 3 ] = 42 ;
+<hi>Error TS2322 (TS) Type 'number' is not assignable to type 'string'.</hi>
+</pre>
+
+
+
+<!--h2--></div>
+
+</main><footer id="page-footer"></footer><script type="module" src="/inc/page.js" ></script></body></html>
