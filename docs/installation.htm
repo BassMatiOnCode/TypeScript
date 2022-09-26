@@ -16,15 +16,41 @@
  
 <title>TypeScript Installation</title>
 
-</head><body><header id="page-header"></header><div id="main-toolbar"></div><main id="page-content">
+</head><body><header id="page-header"><object data="title.svg" type="image/svg+xml" style="height : 100% ; margin-left : 160px"></object></header><div id="main-toolbar"></div><main id="page-content">
 
 <h1>TypeScript Installation</h1>
 
 <p id="page-abstract"></p>
 
-<h2 cbc>Node.js and NPM</h2><div>
+<p>You have multiple options to install TypeScript:</p>
 
-<p>The TypeScript compiler <tt>tsc</tt> needs <tt>node.js</tt> as execution host, so</p>
+<ol>
+<li>Using one of the follwing IDEs
+	<ul>
+	<li><a href="#visual-studio">Visual Studio</a></li>
+	<li><a href="#visual-studio-preview">Visual Studio Preview</a></li>
+	<li><a href="#visual-studio-code">Visual Studio Code</a></li>
+	<li>Other IDEs, not discussed here</li>
+	</ul></li>
+<li>Use other TypeScript hosts like
+	<ul>
+	<li><a href="#deno">Deno</a></li>
+	</ul></li>
+<li>Stand-alone installations on
+	<ul>
+	<li><a href="#sa-win">Windows</a></li>
+	<li><a href="#linux">Linux</a></li>
+	</ul></li>
+<li>Installations on Android
+	<ul>
+	<li><a href="#android-termux">Termux</a></li>
+	<li><a href="#android-options">Other options</a></li>
+	</ul></li>
+</ol>
+
+<h2 cbc id="sa-win">Stand-Alone Installations Based on Node.js</h2><div>
+
+<p>The TypeScript compiler is a JavaScript file, so we can use <tt>node.js</tt> as execution host.</p>
 
 <ol class="instructions">
 <li>Make sure that <a href="">node.js</a> is installed.</li>
@@ -47,7 +73,7 @@
 
 <!--h2--></div>
 
-<h2 cbc>Deno</h2><div>
+<h2 cbc id="deno">Deno</h2><div>
 
 <p><tt>Deno</tt>, the successor of <tt>Node</tt>, is a JavaScript and TypeScript engine host for multiple operating systems and allows to execute JavaScript and TypeScript files out of the box:</p>
 
@@ -59,7 +85,7 @@
 
 <!--h2--></div>
 
-<h2 cbc>Visual Studio</h2><div>
+<h2 cbc id="visual-studio">Visual Studio</h2><div>
 
 <p>TypeScript can be used in VisualStudio MSBuild projects:</p>
 
@@ -82,13 +108,38 @@
 
 <!---h2--></div>
 
-<h2 cbc>Visual Studio Code</h2><div>
+<h2 cbc id="visual-studio-preview">Visual Studio Preview</h2><div>
+
+<p>Yet another option is to use the Visual Studio 2022 preview installer. When done, the tools can found in the VS installation folders and must be made available for console windows.</p>
+
+<ol class="instructions continue">
+<li>Start the installer, then switch to the <tt>Individual components</tt> tab.</li>
+<li>Select the following components:
+	<ul>
+	<li><tt>TypeScript Server</tt></li>
+	<li><tt>TypeScript 4.8 SDK</tt></li>
+	<li><tt>JavaScript and TypeScript language support</tt></li>
+	<li><tt>Node.js development tools</tt></li>
+	</ul></li>
+<li>Start the installation.</li>
+<li>Add the following folders to the <tt>Path</tt> environment variable:
+	<ul>
+	<li>C:\Program Files (x86)\Microsoft SDKs\TypeScript\4.8</li>
+	<li>C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VisualStudio\NodeJs\win-x64</li>
+	<li>C:\Program Files\Microsoft Visual Studio\2022\Preview\MSBuild\Microsoft\VisualStudio\NodeJs\node_modules\npm\bin</li>
+	</ul></li>
+</ol>
+
+
+<!--h2--></div>
+
+<h2 cbc id="visual-studio-code">Visual Studio Code</h2><div>
 
 <p>This popular IDE has also has a TypeScript plug-in that can be installed from the VS Code Marketplace.</p>
 
 <!--h2--></div>
 
-<h2 cbc>Android</h2><div>
+<h2 cbc id="android-termux">Android</h2><div>
 
 <p>TypeScript runs on Android! Although, there are a few steps to be made to get it set up properly:</p>
 
@@ -103,7 +154,7 @@
 
 <!--h2--></div>
 
-<h2 cbc>Termux Alternatives on Android</h2><div>
+<h2 cbc id="android-alternatives">Alternatives on Android</h2><div>
 
 <p><a href="https://alm-tools.gitbooks.io/alm/content/"><tt>ALM tools</tt></a> is an IDE for TypeScript</p>
 

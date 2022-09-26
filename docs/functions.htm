@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="template-info" file-name="empty.htm" version="2022-02-09" editor="USP" />
+<meta name="author" content="USP" />
+<meta name="creation-date" content="2022-09-15" />
+<meta name="editor" content="USP" />
+<meta name="change-date" content="2022-09-15" />
+<meta name="version" content="1" />
+<meta name="categories" content="Programming > Language > TypeScript" />
+<meta name="tags" content="TypeScript, tutorial, type annotation, function" />
+<meta name="description" content="Function parameter and return types are annotate very similar to variables." />
+
+<link rel="stylesheet" href="/inc/page.css" />
+ 
+<title>TypeScript - Functions</title>
+
+</head><body><header id="page-header"><object data="title.svg" type="image/svg+xml" style="height : 100% ; margin-left : 160px"></object></header><div id="main-toolbar"></div><main id="page-content">
+
+<h1>Functions</h1>
+
+<p id="page-abstract"></p>
+
+<h2 cbc>Functions</h2><div>
+
+<p>Functions are annotated as follows:</p>
+
+<pre>
+function function-name( annotated-parameter-list ) : return-type-name { statements-block }
+</pre>
+
+<p>The annotated parameter list is a comma-separated list of parameters, each with a type annotation:</p>
+
+<pre>parameter-name : type-name</pre>
+
+<p>Anonymous functions are often closely tied to a calling context, and therfore parameters and return types can usually be inferred:</p>
+
+<pre>
+var names : string[] ;
+names.forEach( function( s ) { console.log( s.toUpperCase( )); } ) ;
+</pre>
+
+<p>It is obvious that <tt>forEach</tt> expects a function that takes an array element of type <tt>string</tt> and returns nothing, so you don't have to annotate anything. The annotated version looks like this:</p>
+
+<pre>
+function( s : string ) : void { ... }
+</pre>
+
+<p>Similarly, arrow functions are annotated like this:</p>
+
+<pre>( annotated-parameter-list ) : return-type-name => { statements }</pre>
+
+<p>Example:</p>
+
+<pre>
+let a = ["john", "joe", "james"];
+console.log( a );
+a = a.map( s => s[0].toUpperCase() + s.substr(1) );
+a = a.map( (s : string) : string => s[0].toUpperCase() + s.substr(1));
+console.log( a );
+</pre>
+
+<p>The map method takes a function expression and calls this function with the members of the array <tt>a</tt>. The function expression declares an arrow function which takes a string parameter <tt>s</tt> and returns a string type.</p>
+
+<p>Here with explicit type annotations:</p>
+
+<pre>a = a.map( (s : string) : string => s[0].toUpperCase() + s.substr(1));</pre>
+
+<!--h2--></div>
+
+</main><footer id="page-footer"></footer><script type="module" src="/inc/page.js" ></script></body></html>
